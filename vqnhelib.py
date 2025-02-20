@@ -31,6 +31,8 @@ from typing import Union, Optional
 import warnings
 warnings.filterwarnings("ignore")
 
+def test():
+    print("VQNHE Simulation")
 
 ## Define the problem Hamiltonian ##
 
@@ -374,7 +376,7 @@ class ComplexNet(nn.Module):
 class VQNHETrainer:
     def __init__(self, ansatz_circuit: Union[IsingAnsatzCircuit, HeiAnsatzCircuit],
             params : ParameterVector, operator_list, coeff_list, nn_options: dict, 
-            qc_options: Optional[dict] = {}, print_mode = False, cutoff = -20):
+            qc_options: Optional[dict] = {}, print_mode = False, cutoff = None):
         '''
         qc_options (optional, dict): ['shots', 'noise_model']
         nn_options (dict): ['num_epoch', 'features', 'lr'(optional)]
@@ -497,11 +499,11 @@ class VQNHETrainer:
             self.optimizer.zero_grad()
             loss_list.append(ham.item())
 
-            '''
-            if epoch > 20:
-                if np.abs(loss_list[-1] - loss_list[-2]) < 1e-4 * loss_list[-1]: break
-                if loss_list[-1] < self.cutoff: break
-            '''
+            if self.cutoff is not None:
+                if epoch > 20:
+                    if np.abs(loss_list[-1] - loss_list[-2]) < 1e-4 * loss_list[-1]: break
+                    if loss_list[-1] < self.cutoff: break
+            
         
         if self.print_mode: print('Finished Training')
         
