@@ -1,14 +1,8 @@
-# VQNHE (Variational Quantum Neural Hybrid Estimator)
+# VQNHELib
 
-A Python library for quantum-classical hybrid algorithms that combines VQE (Variational Quantum Eigensolver) with neural networks to estimate ground state energies of quantum systems.
+A Python library for VQNHE(Variational Quantum-Neural Hybrid Eigensolver: PRL 128. 120502 (2022)) and U-VQNHE(Unitary-VQNHE: M. Kim et. al., arXiv 2507.11002 (2025))
 
-## Installation
-
-```bash
-pip install qiskit qiskit-aer torch scipy numpy matplotlib tqdm
-```
-
-## Usage
+## User's Guide
 
 ### 1. Generate Hamiltonian
 
@@ -87,6 +81,7 @@ neural_net, loss_history = trainer.train()
 **Quantum Circuit Options (`qc_options`):**
 - `shots` (optional): Number of measurement shots, defaults to 2^num_qubits
 - `noise_model` (optional): Qiskit noise model for realistic quantum simulation
+- `exact` (optional): Set to `True` for exact statevector simulation (no sampling noise)
 
 ### 5. Run U-VQNHE
 
@@ -120,7 +115,7 @@ neural_net, loss_history = trainer.train()
 - `noise_model` (optional): Qiskit noise model for realistic quantum simulation
 - `exact` (optional): Set to `True` for exact statevector simulation (no sampling noise)
 
-**Note:** When `exact=True`, the U-VQNHE trainer uses exact quantum state simulation instead of sampling, providing noise-free results at the cost of computational efficiency.
+**Note:** When `exact=True`, the U-VQNHE trainer uses exact quantum state simulation instead of sampling.
 
 ## Class Descriptions
 
@@ -166,16 +161,9 @@ print(f"VQNHE final loss: {losses[-1]:.6f}")
 print(f"U-VQNHE final loss (exact): {uvqnhe_losses[-1]:.6f}")
 ```
 
-## Requirements
+## Author
 
-- Python 3.7+
-- Qiskit
-- PyTorch
-- NumPy
-- SciPy
-- Matplotlib
-- tqdm
+**Minwoo Kim**  
+Department of Computer Science & Engineering, Seoul National University, South Korea
 
-## License
-
-This project is distributed under the MIT License.
+Email: [myfirstexp@snu.ac.kr](mailto:myfirstexp@snu.ac.kr)
