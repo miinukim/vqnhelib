@@ -55,7 +55,7 @@ nn_options = {
 
 qc_options = {
     'shots': 1000,        # Number of shots for quantum measurements
-    'noise_model': None   # Optional noise model for realistic simulation
+    'noise_model': None   # Optional noise model
 }
 
 trainer = VQNHETrainer(
@@ -76,11 +76,11 @@ neural_net, loss_history = trainer.train()
 **Neural Network Options (`nn_options`):**
 - `num_epoch` (required): Number of training epochs for the neural network
 - `features` (required): Number of hidden features in the neural network layers
-- `lr` (optional): Learning rate for Adam optimizer, defaults to 0.001
+- `lr` (optional): Learning rate for Adam optimizer, defaults to 1e-3
 
 **Quantum Circuit Options (`qc_options`):**
 - `shots` (optional): Number of measurement shots, defaults to 2^num_qubits
-- `noise_model` (optional): Qiskit noise model for realistic quantum simulation
+- `noise_model` (optional): Qiskit noise model
 - `exact` (optional): Set to `True` for exact statevector simulation (no sampling noise)
 
 ### 5. Run U-VQNHE
@@ -91,7 +91,7 @@ from vqnhelib import UnitaryVQNHETrainer
 # Create U-VQNHE trainer
 qc_options = {
     'shots': 1000,        # Number of shots for quantum measurements
-    'noise_model': None,  # Optional noise model for realistic simulation
+    'noise_model': None,  # Optional noise model
     'exact': False        # Set to True for exact statevector simulation
 }
 
@@ -125,7 +125,7 @@ neural_net, loss_history = trainer.train()
 
 ### Trainers
 - **`VQETrainer`**: Basic VQE algorithm
-- **`VQNHETrainer`**: VQE using neural networks
+- **`VQNHETrainer`**: Standard VQNHE algorithm
 - **`UnitaryVQNHETrainer`**: VQNHE using unitary transformations
 
 ## Example
